@@ -148,7 +148,7 @@ namespace Senai.Peoples.WebApi.Repositories
         {
             using (SqlConnection con = new SqlConnection(StringConexao))
             {
-                string query = "SELECT IdFuncionario, Nome, Sobrenome, DataNascimento FROM Funcionarios WHERE Nome = @Nome";
+                string query = $"SELECT IdFuncionario, Nome, Sobrenome, DataNascimento FROM Funcionarios WHERE Nome  LIKE '%{Nome}%'";
 
                 con.Open();
 

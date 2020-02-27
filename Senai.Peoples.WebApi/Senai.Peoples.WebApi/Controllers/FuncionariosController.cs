@@ -79,18 +79,11 @@ namespace Senai.Peoples.WebApi.Controllers
             return Ok("Funcionário deletado");
         }
 
-        [HttpGet("{Nome/Catarina}")]
+        [HttpGet("buscar/{Nome}")]
         public IActionResult BuscarPorNome(string Nome)
         {
-            FuncionarioDomain funcionarioProcurado = _funcionarioRepository.BuscarPorNome(Nome);
 
-            if (funcionarioProcurado == null)
-            {
-                return NotFound("Nenhum funcionario encontrado");
-
-            }
-
-            return Ok(funcionarioProcurado);
+            return Ok(_funcionarioRepository.BuscarPorNome(Nome));
         }
 
     }
