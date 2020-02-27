@@ -13,5 +13,7 @@ namespace Senai.Peoples.WebApi.Domains
 
         public string Sobrenome { get; set; }
 
+        public DateTime DataNascimento { get; set; }
+
     }
 }

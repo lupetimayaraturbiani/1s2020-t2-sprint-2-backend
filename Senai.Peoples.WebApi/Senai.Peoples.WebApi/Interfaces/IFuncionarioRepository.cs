@@ -13,5 +13,17 @@ namespace Senai.Peoples.WebApi.Interfaces
 
         /// Cadastrar funcionario
         void Cadastrar(FuncionarioDomain funcionario);
+
+        /// Listar por id um  funcionario
+        FuncionarioDomain BuscarPorId(int id);
+
+        /// Atualizar funcionario
+        void Atualizar(FuncionarioDomain funcionario);
+
+        /// Deletar funcionario
+        void Deletar(int id);
+
+        /// Buscar por nome do funcionario
+        FuncionarioDomain BuscarPorNome(string Nome);
     }
 }

@@ -9,5 +9,8 @@ CREATE TABLE Funcionarios (
 	Sobrenome		VARCHAR(200) NOT NULL 
 );
 
+ALTER TABLE Funcionarios 
+ALTER COLUMN DataNascimento	DATETIME;
+
 
 

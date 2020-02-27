@@ -35,6 +35,63 @@ namespace Senai.Peoples.WebApi.Controllers
             return StatusCode(201);
         }
 
+        [HttpGet("{id}")]
+        public IActionResult BuscarPorId(int id)
+        {
+            FuncionarioDomain funcionarioProcurado = _funcionarioRepository.BuscarPorId(id);
+
+            if (funcionarioProcurado == null)
+            {
+                return NotFound("Nenhum funcionario encontrado");
+
+            }
+
+            return Ok(funcionarioProcurado);
+        }
+
+        [HttpPut]
+        public IActionResult Put(FuncionarioDomain funcionarioAtualizado)
+        {
+            FuncionarioDomain funcionarioProcurado = _funcionarioRepository.BuscarPorId(funcionarioAtualizado.IdFuncionario);
+
+            if (funcionarioProcurado != null)
+            {
+                try
+                {
+                    _funcionarioRepository.Atualizar(funcionarioAtualizado);
+
+                    return NoContent();
+                }
+                catch (Exception error)
+                {
+                    return BadRequest(error);
+                }
+            }
+
+            return NotFound("Não rolou :(");
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _funcionarioRepository.Deletar(id);
+
+            return Ok("Funcionário deletado");
+        }
+
+        [HttpGet("{Nome/Catarina}")]
+        public IActionResult BuscarPorNome(string Nome)
+        {
+            FuncionarioDomain funcionarioProcurado = _funcionarioRepository.BuscarPorNome(Nome);
+
+            if (funcionarioProcurado == null)
+            {
+                return NotFound("Nenhum funcionario encontrado");
+
+            }
+
+            return Ok(funcionarioProcurado);
+        }
 
     }
 }
