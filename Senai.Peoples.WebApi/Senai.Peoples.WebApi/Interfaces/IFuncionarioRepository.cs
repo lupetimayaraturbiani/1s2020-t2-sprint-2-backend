@@ -25,5 +25,11 @@ namespace Senai.Peoples.WebApi.Interfaces
 
         /// Buscar por nome do funcionario
         FuncionarioDomain BuscarPorNome(string Nome);
+
+        /// Listar por nome completo
+        List<FuncionarioDomain> ListarPorNomeCompleto();
+
+        /// Listar ordenado
+        List<FuncionarioDomain> ListarOrdenado(string ordem); 
     }
 }

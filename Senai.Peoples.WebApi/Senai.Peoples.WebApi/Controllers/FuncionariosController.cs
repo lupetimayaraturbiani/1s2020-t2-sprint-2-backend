@@ -86,5 +86,31 @@ namespace Senai.Peoples.WebApi.Controllers
             return Ok(_funcionarioRepository.BuscarPorNome(Nome));
         }
 
+        [HttpGet("nomescompletos")]
+        public IActionResult GetFullName()
+        {
+            // Faz a chamada para o método .ListarNomeCompleto            
+            // Retorna a lista e um status code 200 - Ok
+            return Ok(_funcionarioRepository.ListarPorNomeCompleto());
+        }
+
+        [HttpGet("ordenacao/{ordem}")]
+        public IActionResult GetOrderBy(string ordem)
+        {
+            // Verifica se a ordenação atende aos requisitos
+            if (ordem != "ASC" && ordem != "DESC")
+            {
+                // Caso não, retorna um status code 404 - BadRequest com uma mensagem de erro
+                return BadRequest("Não é possível ordenar da maneira solicitada. Por favor, ordene por 'ASC' ou 'DESC'");
+            }
+
+            // Retorna a lista ordenada com um status code 200 - OK
+            return Ok(_funcionarioRepository.ListarOrdenado(ordem));
+        }
+
+
+
+
+
     }
 }

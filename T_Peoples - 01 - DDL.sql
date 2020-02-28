@@ -9,8 +9,24 @@ CREATE TABLE Funcionarios (
 	Sobrenome		VARCHAR(200) NOT NULL 
 );
 
+CREATE TABLE TipoUsuario (
+	IdTipoUsuario	INT PRIMARY KEY IDENTITY,
+	Titulo			VARCHAR (200) NOT NULL
+);
+
+CREATE TABLE Usuarios (
+	IdUsuario		INT PRIMARY KEY IDENTITY,
+	Email			VARCHAR (255) NOT NULL UNIQUE,
+	Senha			VARCHAR (255) NOT NULL,
+	IdTipoUsuario	INT FOREIGN KEY REFERENCES TipoUsuario (IdTipoUsuario)
+);
+
 ALTER TABLE Funcionarios 
 ALTER COLUMN DataNascimento	DATETIME;
 
+
+DROP TABLE Usuarios;
+
+DROP TABLE TipoUsuario;
 
 
