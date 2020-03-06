@@ -1,43 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using Senai.Peoples.WebApi.Domains;
 using Senai.Peoples.WebApi.Interfaces;
 using Senai.Peoples.WebApi.Repositories;
 
 namespace Senai.Peoples.WebApi.Controllers
 {
-    [Produces ("application/json")]
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class UsuarioController : ControllerBase
+    public class TipoUsuarioController : ControllerBase
     {
-        private IUsuarioRepository _usuarioRepository { get; set; }
+        private ITipoUsuarioRepository _tipoUsuarioRepository { get; set; }
 
-        public UsuarioController()
+        public TipoUsuarioController()
         {
-            _usuarioRepository = new UsuarioRepository();
+            _tipoUsuarioRepository = new TipoUsuarioRepository();
         }
 
         [Authorize(Roles = "2")]
         [HttpGet]
-        public IEnumerable<UsuarioDomain> Listar()
+        public IEnumerable<TipoUsuarioDomain> Listar()
         {
-            return _usuarioRepository.Listar();
+            return _tipoUsuarioRepository.ListarTipoUsuario();
         }
 
         [HttpPost]
-        public IActionResult Cadastrar(UsuarioDomain novoUsuario)
+        public IActionResult Cadastrar(TipoUsuarioDomain novoTipoUsuario)
         {
-            _usuarioRepository.Cadastrar(novoUsuario);
+            _tipoUsuarioRepository.CadastrarTipoUsuario(novoTipoUsuario);
             return StatusCode(201);
         }
 
@@ -45,28 +42,28 @@ namespace Senai.Peoples.WebApi.Controllers
         [HttpGet("{id}")]
         public IActionResult BuscarPorId(int id)
         {
-            UsuarioDomain usuarioProcurado = _usuarioRepository.BuscarPorId(id);
+            TipoUsuarioDomain tipoUsuarioProcurado = _tipoUsuarioRepository.BuscarPorId(id);
 
-            if (usuarioProcurado == null)
+            if (tipoUsuarioProcurado == null)
             {
                 return NotFound("Nenhum usuario encontrado");
 
             }
 
-            return Ok(usuarioProcurado);
+            return Ok(tipoUsuarioProcurado);
         }
 
         [Authorize(Roles = "2")]
         [HttpPut]
-        public IActionResult Atualizar(UsuarioDomain usuarioAtualizado)
+        public IActionResult Atualizar(TipoUsuarioDomain tipoUsuarioAtualizado)
         {
-            UsuarioDomain usuarioProcurado = _usuarioRepository.BuscarPorId(usuarioAtualizado.IdUsuario);
+            TipoUsuarioDomain usuarioProcurado = _tipoUsuarioRepository.BuscarPorId(tipoUsuarioAtualizado.IdTipoUsuario);
 
             if (usuarioProcurado != null)
             {
                 try
                 {
-                    _usuarioRepository.Atualizar(usuarioAtualizado);
+                    _tipoUsuarioRepository.AtualizarTipoUsuario(tipoUsuarioAtualizado);
 
                     return NoContent();
                 }
@@ -83,12 +80,9 @@ namespace Senai.Peoples.WebApi.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            _usuarioRepository.Deletar(id);
+            _tipoUsuarioRepository.DeletarTipoUsuario(id);
 
             return Ok("Usuário deletado");
         }
-
-
-       
     }
 }

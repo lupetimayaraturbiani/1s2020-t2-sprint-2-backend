@@ -9,6 +9,18 @@ namespace Senai.Peoples.WebApi.Interfaces
     interface ITipoUsuarioRepository
     {
         /// Listar Tipo de Usuarios
-        List<TipoUsuarioDomain> ListarTipoUsuario(); 
+        List<TipoUsuarioDomain> ListarTipoUsuario();
+
+
+        void CadastrarTipoUsuario(TipoUsuarioDomain tipoUsuario);
+
+
+        TipoUsuarioDomain BuscarPorId(int id);
+
+
+        void AtualizarTipoUsuario(TipoUsuarioDomain tipoUsuario);
+
+
+        void DeletarTipoUsuario(int id);
     }
 }

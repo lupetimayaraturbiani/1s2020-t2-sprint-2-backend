@@ -17,3 +17,4 @@ VALUES ('carol@gmail.com', 'carol123', 1),
 
 UPDATE Funcionarios SET DataNascimento = '17/02/1997' WHERE IdFuncionario = 4;
 
+SELECT * FROM Usuarios

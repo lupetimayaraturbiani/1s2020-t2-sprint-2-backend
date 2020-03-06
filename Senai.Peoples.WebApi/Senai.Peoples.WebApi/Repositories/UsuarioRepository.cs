@@ -33,8 +33,8 @@ namespace Senai.Peoples.WebApi.Repositories
                         UsuarioDomain usuario = new UsuarioDomain
                         {
                             IdUsuario = Convert.ToInt32((rdr[0])),
-                            Email = rdr["Nome"].ToString(),
-                            Senha = rdr["Sobrenome"].ToString(),
+                            Email = rdr["Email"].ToString(),
+                            Senha = rdr["Senha"].ToString(),
                             IdTipoUsuario = Convert.ToInt32(rdr[3])
                         };
 
